@@ -1,0 +1,54 @@
+quartz:
+  enabled: true
+server:
+  port: 9090
+spring:
+  application:
+    name: Spring-Quartz-Scheduler                                       #Quartz调度中心
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.20.247:3306/qrtz
+    username: qrtz
+    password: qrtz
+    tomcat:
+      initialSize: 20
+      maxActive: 100
+      maxIdle: 100
+      minIdle: 20
+      maxWait: 10000
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+  quartz:
+    # 数据库方式
+    job-store-type: jdbc
+    # 初始化表结构
+    #jdbc:
+      # initialize-schema: never
+      # initialize-schema: always
+      # initialize-schema: embedded
+    # overwrite-existing-jobs: true
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            useProperties: false
+            dataSource: myDs
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+          dataSource:
+            myDs:
+              driver: ${spring.datasource.driver-class-name}
+              URL: ${spring.datasource.url}
+              user: ${spring.datasource.username}
+              password: ${spring.datasource.password}
+              # maxConnection: 10

@@ -1,6 +1,10 @@
 HELP.md
 target
-.mvn/wrapper/maven-wrapper.jar
+
+# Maven
+/.mvn/
+mvnw
+mvnw.cmd
 
 # work file
 .DS_Store

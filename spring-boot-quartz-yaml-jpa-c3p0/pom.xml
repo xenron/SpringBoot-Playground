@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.example</groupId>
-  <artifactId>spring-boot-quartz-yaml</artifactId>
+  <artifactId>spring-boot-quartz-yaml-jpa</artifactId>
   <version>1.0</version>
   <description>Demo</description>
 

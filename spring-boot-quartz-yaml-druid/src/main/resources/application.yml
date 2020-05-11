@@ -47,8 +47,11 @@ spring:
             threadsInheritContextClassLoaderOfInitializingThread: true
           dataSource:
             myDs:
+              connectionProvider:
+                class: com.example.provider.DruidConnectionProvider
               driver: ${spring.datasource.driver-class-name}
               URL: ${spring.datasource.url}
               user: ${spring.datasource.username}
               password: ${spring.datasource.password}
-              # maxConnection: 10
+#              setMaxActive: 0
+              maxConnection: 10
